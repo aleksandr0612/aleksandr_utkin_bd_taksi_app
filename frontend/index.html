@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>TaksiRating</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVIGACIJA -->
+    <nav class="bottom-nav">
+        <button data-target="companies" class="active">Įmonės</button>
+        <button data-target="reviews">Atsiliepimai</button>
+        <button data-target="history">Istorija</button>
+        <button data-target="profile">Profilis</button>
+    </nav>
+
+    <!-- LOGIN EKRANAS -->
+    <div class="screen" data-screen="login">
+        <h2>Prisijungimas</h2>
+        <p>Automatinis prisijungimas nepavyko. Prisijunkite rankiniu būdu.</p>
+    </div>
+
+    <!-- ĮMONĖS -->
+    <div class="screen active" data-screen="companies">
+        <h2>Įmonės</h2>
+
+        <div class="filters">
+            <input id="search-code" class="input" type="text" placeholder="Juridinis kodas">
+            <input id="search-name" class="input" type="text" placeholder="Pavadinimas">
+
+            <select id="filter-city" class="input">
+                <option value="">Miestas</option>
+            </select>
+
+            <select id="filter-eco" class="input">
+                <option value="">Ekologiškumas</option>
+                <option value="true">Ekologiškos</option>
+                <option value="false">Neekologiškos</option>
+            </select>
+
+            <select id="filter-price" class="input">
+                <option value="">Kaina</option>
+                <option value="low">Pigiausios</option>
+                <option value="high">Brangiausios</option>
+            </select>
+
+            <select id="filter-score" class="input">
+                <option value="">Butkevičiaus balas</option>
+                <option value="high">Aukščiausias</option>
+                <option value="low">Žemiausias</option>
+            </select>
+
+            <button id="search-btn" class="btn-primary">Ieškoti</button>
+        </div>
+
+        <div id="company-list"></div>
+    </div>
+
+    <!-- ATSILIEPIMŲ EKRANAS (bendra apžvalga, jei prireiks) -->
+    <div class="screen" data-screen="reviews">
+        <h2>Atsiliepimai</h2>
+        <div id="reviews-list"></div>
+    </div>
+
+    <!-- ISTORIJA -->
+    <div class="screen" data-screen="history">
+        <h2>Mano reitingų istorija</h2>
+        <div id="history-list"></div>
+    </div>
+
+    <!-- PROFILIS -->
+    <div class="screen" data-screen="profile">
+        <h2>Profilis</h2>
+        <p>Vardas: <span id="profile-name"></span></p>
+        <p>El. paštas: <span id="profile-email"></span></p>
+        <button id="logout-btn" class="btn-secondary">Atsijungti</button>
+    </div>
+
+    <!-- ĮMONĖS DETALIŲ MODALAS -->
+    <div id="company-modal-backdrop" class="modal-backdrop hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-company-name"></h3>
+                <button id="modal-close" class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Kodas:</strong> <span id="modal-company-code"></span></p>
+                <p><strong>Miestai:</strong> <span id="modal-company-cities"></span></p>
+                <p><strong>Kaina:</strong> <span id="modal-company-price"></span> €</p>
+                <p><strong>Butkevičiaus balas:</strong> <span id="modal-company-score"></span></p>
+
+                <hr>
+
+                <h4>Atsiliepimai</h4>
+                <div id="modal-reviews-list"></div>
+
+                <hr>
+
+                <h4>Palik atsiliepimą</h4>
+                <form id="review-form">
+                    <div class="stars">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                    <textarea id="review-comment" class="input textarea" placeholder="Tavo komentaras"></textarea>
+                    <button type="submit" class="btn-primary full-width">Siųsti atsiliepimą</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
